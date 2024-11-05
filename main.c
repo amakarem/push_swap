@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 17:34:26 by aelaaser          #+#    #+#             */
-/*   Updated: 2024/11/05 01:01:41 by aelaaser         ###   ########.fr       */
+/*   Updated: 2024/11/05 01:38:43 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ int	main(int argc, char **argv)
 	b = init_stack();
 	if (!b)
 		return (ft_printf("Error\n"), free_stack(a), -1);
-	i = 1;
-	while (argv[i])
+	i = argc - 1;
+	while (i > 0)
 	{
 		if (!ft_isnum(argv[i]) || ft_already_exist_stack(a, ft_atoi(argv[i])))
 		{
@@ -35,7 +35,7 @@ int	main(int argc, char **argv)
 			return (free_stack(a), -1);
 		}
 		push(a, ft_atoi(argv[i]));
-		i++;
+		i--;
 	}
 	sort_stack(a, b);
 	//print_stack(a);

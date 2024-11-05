@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 17:31:09 by aelaaser          #+#    #+#             */
-/*   Updated: 2024/11/05 00:13:56 by aelaaser         ###   ########.fr       */
+/*   Updated: 2024/11/05 01:44:34 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	pa(t_stack *stack_a, t_stack *stack_b);
 void	pb(t_stack *stack_a, t_stack *stack_b);
 void	ra(t_stack *stack_a);
 void	rb(t_stack *stack_b);
+void	rr(t_stack *stack_a, t_stack *stack_b);
+void	rrr(t_stack *stack_a, t_stack *stack_b);
 void	rra(t_stack *stack_a);
 void	rrb(t_stack *stack_b);
 int		find_min_index(t_stack *stack);

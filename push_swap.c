@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 17:29:44 by aelaaser          #+#    #+#             */
-/*   Updated: 2024/11/05 01:03:30 by aelaaser         ###   ########.fr       */
+/*   Updated: 2024/11/05 01:45:58 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	sort_stack(t_stack *stack, t_stack *stack_b)
 	int min_index;
 	int current_index;
 
-	if (stack->top && stack->top->next && stack->top->value > stack->top->next->value)
+	if (stack->size >= 2 && stack->top->value > stack->top->next->value)
         sa(stack);
 	while (stack->size > 0)
 	{

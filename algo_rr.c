@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 23:24:30 by aelaaser          #+#    #+#             */
-/*   Updated: 2024/11/05 00:00:32 by aelaaser         ###   ########.fr       */
+/*   Updated: 2024/11/05 01:44:24 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,16 @@ void	rrb(t_stack *stack_b)
 	current->next = stack_b->top;
 	stack_b->top = current;
 	ft_printf("rrb\n");
+}
+
+void	rr(t_stack *stack_a, t_stack *stack_b)
+{
+	ra(stack_a);
+	rb(stack_b);
+}
+
+void	rrr(t_stack *stack_a, t_stack *stack_b)
+{
+	rra(stack_a);
+	rrb(stack_b);
 }
