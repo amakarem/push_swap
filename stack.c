@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 20:40:21 by aelaaser          #+#    #+#             */
-/*   Updated: 2024/11/05 00:14:30 by aelaaser         ###   ########.fr       */
+/*   Updated: 2024/11/06 16:36:50 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,16 @@ void	free_stack(t_stack *stack)
 	while (stack->size > 0)
 		pop(stack);
 	free(stack);
+}
+
+void	print_stack(t_stack *stack)
+{
+	t_node	*current;
+
+	current = stack->top;
+	while (current != NULL)
+	{
+		ft_printf("%d\n", current->value);
+		current = current->next;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 17:29:44 by aelaaser          #+#    #+#             */
-/*   Updated: 2024/11/05 01:45:58 by aelaaser         ###   ########.fr       */
+/*   Updated: 2024/11/06 20:00:51 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,6 @@ int	ft_isnum(char *s)
 		i++;
 	}
 	return (1);
-}
-
-void	print_stack(t_stack *stack)
-{
-	t_node	*current;
-
-	current = stack->top;
-	while (current != NULL)
-	{
-		ft_printf("%d\n", current->value);
-		current = current->next;
-	}
 }
 
 int	ft_already_exist_stack(t_stack *stack, int n)
@@ -79,18 +67,48 @@ int	find_min_index(t_stack *stack)
     return (min_index);
 }
 
+int	is_sorted_stack(t_stack *stack)
+{
+	t_node	*current;
+	int		index;
+
+	if (stack->size == 0)
+        return (1);
+	current = stack->top;
+	index = 0;
+    while (current->next)
+	{
+        if (current->value > current->next->value)
+			return (0);
+        current = current->next;
+		index++;
+    }
+    return (1);
+}
+
 void	sort_stack(t_stack *stack, t_stack *stack_b)
 {
 	int min_index;
 	int current_index;
 
-	if (stack->size >= 2 && stack->top->value > stack->top->next->value)
-        sa(stack);
-	while (stack->size > 0)
+	while (stack->size > 0 && !is_sorted_stack(stack))
 	{
+		print_stack(stack);
+		ft_printf("\n-----------");
+		if (stack->size >= 2 && stack->top->value > stack->top->next->value)
+		{
+        	sa(stack);
+			continue;
+		}
 		min_index = find_min_index(stack);
+		ft_printf("%i", min_index);
 		if (min_index == -1)
 			return ;
+		if ((min_index + 1) == stack->size)
+		{
+			rra(stack);
+			continue;
+		}
 		current_index = 0;
         while (current_index != min_index)
 		{
