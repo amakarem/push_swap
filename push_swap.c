@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 17:29:44 by aelaaser          #+#    #+#             */
-/*   Updated: 2024/11/06 22:32:05 by aelaaser         ###   ########.fr       */
+/*   Updated: 2024/11/06 22:38:42 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,25 +91,24 @@ void	sort_stack(t_stack *stack, t_stack *stack_b)
 		min_index = find_min_index(stack);
 		if (min_index == -1)
 			return ;
-		if ((min_index + 1) == stack->size)
-		{
-			rra(stack);
-			continue;
-		}
-		// current_index = 0;
-        // while (current_index != min_index)
+		// if ((min_index + 1) == stack->size)
 		// {
-		// 	if (min_index < stack->size)
-		// 		ra(stack);
-		// 	else
-		// 		rra(stack);
-        //     current_index++;
-        // }
+		// 	rra(stack);
+		// 	continue;
+		// }
+		current_index = 0;
+        while (current_index < min_index)
+		{
+			if (min_index < stack->size)
+				ra(stack);
+			else
+				rra(stack);
+            current_index++;
+        }
 		pb(stack, stack_b);
-		sort_stack(stack_b, null);
     }
 	while (stack_b->size > 0)
         pa(stack, stack_b);
-	if (!is_sorted_stack(stack))
-		sort_stack(stack, stack_b);
+	// if (!is_sorted_stack(stack))
+	// 	sort_stack(stack, stack_b);
 }
