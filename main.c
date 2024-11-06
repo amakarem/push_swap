@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 17:34:26 by aelaaser          #+#    #+#             */
-/*   Updated: 2024/11/05 01:38:43 by aelaaser         ###   ########.fr       */
+/*   Updated: 2024/11/06 21:40:20 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	main(int argc, char **argv)
 		push(a, ft_atoi(argv[i]));
 		i--;
 	}
-	sort_stack(a, b);
-	//print_stack(a);
+	push_swap(a, b);
+	// print_stack(a);
 	return (free_stack(a), free_stack(b), 0);
 }

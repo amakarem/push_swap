@@ -6,40 +6,48 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 17:29:44 by aelaaser          #+#    #+#             */
-/*   Updated: 2024/11/06 20:00:51 by aelaaser         ###   ########.fr       */
+/*   Updated: 2024/11/06 22:15:32 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_isnum(char *s)
-{
-	int	i;
-
-	i = 0;
-	if (s[i] == '-' || s[i] == '+')
-        i++;
-	while (s[i] != '\0')
-	{
-		if (!ft_isdigit(s[i]))
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
-int	ft_already_exist_stack(t_stack *stack, int n)
+int is_pos_correct(t_stack *stack, int min_value, int min_index)
 {
 	t_node	*current;
+	int		index;
 
+	if (stack->size == 0)
+        return (1);
 	current = stack->top;
-	while (current != NULL)
+	index = 0;
+    while (current != NULL && index <= min_index)
 	{
-		if (current->value == n)
-			return (1);
-		current = current->next;
-	}
-	return (0);
+        if (current->value >= min_value)
+			return (0);
+        current = current->next;
+		index++;
+    }
+    return (1);
+}
+
+int	last_max(t_stack *stack)
+{
+	t_node	*current;
+	int		index;
+
+	if (stack->size == 0)
+        return (0);
+	current = stack->top;
+	index = 0;
+    while (current->next != NULL)
+	{
+        if (current->value > current->next->value)
+			return (current->value);
+        current = current->next;
+		index++;
+    }
+	return (current->value);
 }
 
 int	find_min_index(t_stack *stack)
@@ -52,12 +60,13 @@ int	find_min_index(t_stack *stack)
 	if (stack->size == 0)
         return -1;
 	current = stack->top;
-	min_value = current->value;
+	min_value = last_max(stack);
     min_index = 0;
     index = 0;
     while (current != NULL)
 	{
-        if (current->value < min_value) {
+        if (current->value < min_value && !is_pos_correct(stack, current->value, index))
+		{
             min_value = current->value;
             min_index = index;
         }
@@ -67,25 +76,6 @@ int	find_min_index(t_stack *stack)
     return (min_index);
 }
 
-int	is_sorted_stack(t_stack *stack)
-{
-	t_node	*current;
-	int		index;
-
-	if (stack->size == 0)
-        return (1);
-	current = stack->top;
-	index = 0;
-    while (current->next)
-	{
-        if (current->value > current->next->value)
-			return (0);
-        current = current->next;
-		index++;
-    }
-    return (1);
-}
-
 void	sort_stack(t_stack *stack, t_stack *stack_b)
 {
 	int min_index;
@@ -93,15 +83,12 @@ void	sort_stack(t_stack *stack, t_stack *stack_b)
 
 	while (stack->size > 0 && !is_sorted_stack(stack))
 	{
-		print_stack(stack);
-		ft_printf("\n-----------");
 		if (stack->size >= 2 && stack->top->value > stack->top->next->value)
 		{
         	sa(stack);
 			continue;
 		}
 		min_index = find_min_index(stack);
-		ft_printf("%i", min_index);
 		if (min_index == -1)
 			return ;
 		if ((min_index + 1) == stack->size)
@@ -118,8 +105,10 @@ void	sort_stack(t_stack *stack, t_stack *stack_b)
 				rra(stack);
             current_index++;
         }
-    	pb(stack, stack_b);
+		pb(stack, stack_b);
     }
 	while (stack_b->size > 0)
         pa(stack, stack_b);
+	if (!is_sorted_stack(stack))
+		sort_stack(stack, stack_b);
 }
