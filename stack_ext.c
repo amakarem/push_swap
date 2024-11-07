@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 20:06:51 by aelaaser          #+#    #+#             */
-/*   Updated: 2024/11/07 17:57:36 by aelaaser         ###   ########.fr       */
+/*   Updated: 2024/11/07 22:09:33 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_isnum(char *s)
 
 	i = 0;
 	if (s[i] == '-' || s[i] == '+')
-        i++;
+		i++;
 	while (s[i] != '\0')
 	{
 		if (!ft_isdigit(s[i]))
@@ -48,15 +48,15 @@ int	is_sorted_stack(t_stack *stack)
 	int		index;
 
 	if (stack->size == 0)
-        return (1);
+		return (1);
 	current = stack->top;
 	index = 0;
-    while (current->next)
+	while (current->next)
 	{
-        if (current->value > current->next->value)
+		if (current->value > current->next->value)
 			return (0);
-        current = current->next;
+		current = current->next;
 		index++;
-    }
-    return (1);
+	}
+	return (1);
 }
