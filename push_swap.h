@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 17:31:09 by aelaaser          #+#    #+#             */
-/*   Updated: 2024/11/06 21:40:46 by aelaaser         ###   ########.fr       */
+/*   Updated: 2024/11/07 22:48:51 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,6 @@ void	rra(t_stack *stack_a);
 void	rrb(t_stack *stack_b);
 // int		find_min_index(t_stack *stack);
 void	sort_stack(t_stack *stack, t_stack *stack_b);
+void	quicksort_stack(t_stack *stack, t_stack *stack_b, int low, int high);
 void	push_swap(t_stack *stack_a, t_stack *stack_b);
 #endif
