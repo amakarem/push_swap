@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 17:31:09 by aelaaser          #+#    #+#             */
-/*   Updated: 2024/11/07 22:48:51 by aelaaser         ###   ########.fr       */
+/*   Updated: 2024/11/09 15:50:00 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,15 @@ void	sa(t_stack *stack_a);
 void	sb(t_stack *stack_b);
 void	pa(t_stack *stack_a, t_stack *stack_b);
 void	pb(t_stack *stack_a, t_stack *stack_b);
-void	ra(t_stack *stack_a);
-void	rb(t_stack *stack_b);
+void	ra(t_stack *stack_a, int noprint);
+void	rb(t_stack *stack_b, int noprint);
+void	rra(t_stack *stack_a, int noprint);
+void	rrb(t_stack *stack_b, int noprint);
 void	rr(t_stack *stack_a, t_stack *stack_b);
 void	rrr(t_stack *stack_a, t_stack *stack_b);
-void	rra(t_stack *stack_a);
-void	rrb(t_stack *stack_b);
 // int		find_min_index(t_stack *stack);
 void	sort_stack(t_stack *stack, t_stack *stack_b);
 void	quicksort_stack(t_stack *stack, t_stack *stack_b, int low, int high);
+void	radix_sort(t_stack *stack_a, t_stack *stack_b);
 void	push_swap(t_stack *stack_a, t_stack *stack_b);
 #endif

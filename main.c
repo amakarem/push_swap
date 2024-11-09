@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 17:34:26 by aelaaser          #+#    #+#             */
-/*   Updated: 2024/11/07 22:48:30 by aelaaser         ###   ########.fr       */
+/*   Updated: 2024/11/09 15:39:05 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@ void	push_swap(t_stack *stack_a, t_stack *stack_b)
 {
 	if (stack_a->size <= 1)
 		return ;
-	if (stack_a->size >= 1000)
-		quicksort_stack(stack_a, stack_b, 0, stack_a->size - 1);
+	if (stack_a->size >= 100)
+		radix_sort(stack_a, stack_b);
+		// quicksort_stack(stack_a, stack_b, 0, stack_a->size - 1);
 	// else if (stack->size >= 1000)
 	// 	radix_sort(stack_a, stack_b);
 	else

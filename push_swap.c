@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 17:29:44 by aelaaser          #+#    #+#             */
-/*   Updated: 2024/11/08 00:10:29 by aelaaser         ###   ########.fr       */
+/*   Updated: 2024/11/09 15:50:54 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,9 +113,9 @@ void	sort_stack(t_stack *stack, t_stack *stack_b)
 		while (current_index < min_index)
 		{
 			if (min_index < stack->size)
-				ra(stack);
+				ra(stack, 0);
 			else
-				rra(stack);
+				rra(stack, 0);
 			current_index++;
 		}
 		pb(stack, stack_b);
@@ -148,9 +148,9 @@ void	sort_stack(t_stack *stack, t_stack *stack_b)
 // 		{
 // 			ft_printf("\n%d --- %d --- %d", current_index, next_index, last_max(stack));
 // 			if (next_index < stack->size / 2)
-// 				ra(stack);
+// 				ra(stack, 0);
 // 			else
-// 				rra(stack);
+// 				rra(stack, 0);
 // 			current_index++;
 // 		}
 // 		pb(stack, stack_b);
