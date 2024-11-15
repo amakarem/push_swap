@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 17:29:44 by aelaaser          #+#    #+#             */
-/*   Updated: 2024/11/09 15:50:54 by aelaaser         ###   ########.fr       */
+/*   Updated: 2024/11/11 22:39:30 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,12 @@ int	find_min_index(t_stack *stack)
 	int		index;
 
 	current = stack->top;
-	min_value = last_max(stack);
+	min_value = current->value;
 	min_index = 0;
 	index = 0;
 	while (current != NULL)
 	{
-		if (current->value < min_value
-			&& !is_pos_correct(stack, current->value, index))
+		if (current->value < min_value)
 		{
 			min_value = current->value;
 			min_index = index;
@@ -75,24 +74,28 @@ int	find_min_index(t_stack *stack)
 	return (min_index);
 }
 
-// int	find_min(t_stack *stack)
-// {
-// 	t_node	*current;
-// 	int		min_value;
+int	get_value(t_stack *stack, int index)
+{
+	t_node	*current;
+	int		value;
+	int		v_index;
 
-// 	current = stack->top;
-// 	min_value = last_max(stack);
-// 	while (current != NULL)
-// 	{
-// 		if (current->value < min_value
-// 			&& !is_pos_correct(stack, current->value, index))
-// 		{
-// 			min_value = current->value;
-// 		}
-// 		current = current->next;
-// 	}
-// 	return (min_value);
-// }
+	current = stack->top;
+	value = current->value;
+	v_index = 0;
+	while (current != NULL && v_index <= index)
+	{
+		if (v_index == index)
+		{
+			value = current->value;
+			break;
+		}
+		current = current->next;
+		v_index++;
+	}
+	return (value);
+}
+
 
 void	sort_one(t_stack *stack)
 {
@@ -103,27 +106,33 @@ void	sort_one(t_stack *stack)
 void	sort_stack(t_stack *stack, t_stack *stack_b)
 {
 	int	min_index;
+	int	min_value;
 	int	current_index;
 
-	while (stack->size > 0 && !is_sorted_stack(stack))
+	while (stack->size > 0 && !is_sorted_stack(stack)) //&& !is_sorted_stack(stack)
 	{
 		sort_one(stack);
 		min_index = find_min_index(stack);
+		min_value = get_value(stack, min_index);
 		current_index = 0;
-		while (current_index < min_index)
+		while (current_index < min_index && stack->top->value != min_value)
 		{
-			if (min_index < stack->size)
+			if (min_index < stack->size / 2)
 				ra(stack, 0);
 			else
 				rra(stack, 0);
 			current_index++;
+			if (stack->top->value == min_value)
+				break;
 		}
-		pb(stack, stack_b);
+		if (!is_sorted_stack(stack))
+			pb(stack, stack_b);
 	}
 	while (stack_b->size > 0)
 		pa(stack, stack_b);
 	if (!is_sorted_stack(stack))
-		sort_stack(stack, stack_b);
+	// 	sort_stack(stack, stack_b);
+		print_stack(stack);
 }
 
 // void	sort_stackxx(t_stack *stack, t_stack *stack_b)

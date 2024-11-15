@@ -6,7 +6,7 @@
 #    By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/17 23:01:14 by aelaaser          #+#    #+#              #
-#    Updated: 2024/11/07 18:59:11 by aelaaser         ###   ########.fr        #
+#    Updated: 2024/11/16 00:52:37 by aelaaser         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,8 @@ SRCS = 	push_swap.c
 
 OBJS = $(SRCS:.c=.o)
 
+LIBFT = libft/libft.a
+LIBPRINTF = ft_printf/libprintf.a
 extralib:
 	make -C ft_printf
 	make -C libft
@@ -29,8 +31,8 @@ NAME = pushswap.a
 all: $(NAME)
 
 # Rule to create the static library
-$(NAME): $(OBJS)
-	ar rcs $(NAME) $(OBJS)
+$(NAME): $(OBJS) $(LIBFT) $(LIBPRINTF)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT) $(LIBPRINTF)
 
 # Clean up build files
 clean:

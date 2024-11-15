@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 20:06:51 by aelaaser          #+#    #+#             */
-/*   Updated: 2024/11/07 22:09:33 by aelaaser         ###   ########.fr       */
+/*   Updated: 2024/11/11 22:10:26 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,13 @@ int	is_sorted_stack(t_stack *stack)
 		return (1);
 	current = stack->top;
 	index = 0;
-	while (current->next)
+	while (current->next != NULL && index < stack->size)
 	{
 		if (current->value > current->next->value)
+		{
+			ft_printf("\nNOT SORTED HERE %d > %d \n", current->value, current->next->value);
 			return (0);
+		}
 		current = current->next;
 		index++;
 	}
