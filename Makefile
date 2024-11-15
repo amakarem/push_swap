@@ -6,7 +6,7 @@
 #    By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/17 23:01:14 by aelaaser          #+#    #+#              #
-#    Updated: 2024/11/16 00:52:37 by aelaaser         ###   ########.fr        #
+#    Updated: 2024/11/16 00:54:41 by aelaaser         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ CC = gcc
 CFLAGS = -Wall -Werror -Wextra
 
 # Source files
-SRCS = 	push_swap.c
+SRCS = 	push_swap.c stack.c stack_ext.c algo_push.c alog_rotate.c algo_rr.c algo_swap.c main.c
 
 OBJS = $(SRCS:.c=.o)
 
