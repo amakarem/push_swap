@@ -6,7 +6,7 @@
 #    By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/17 23:01:14 by aelaaser          #+#    #+#              #
-#    Updated: 2024/11/16 00:54:41 by aelaaser         ###   ########.fr        #
+#    Updated: 2024/11/16 01:13:35 by aelaaser         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,17 +15,14 @@ CC = gcc
 CFLAGS = -Wall -Werror -Wextra
 
 # Source files
-SRCS = 	push_swap.c stack.c stack_ext.c algo_push.c alog_rotate.c algo_rr.c algo_swap.c main.c
+SRCS = 	push_swap.c stack.c stack_ext.c algo_push.c algo_rotate.c algo_rr.c algo_swap.c main.c
 
 OBJS = $(SRCS:.c=.o)
 
 LIBFT = libft/libft.a
 LIBPRINTF = ft_printf/libprintf.a
-extralib:
-	make -C ft_printf
-	make -C libft
 # Library name
-NAME = pushswap.a
+NAME = push_swap
 
 # Default target
 all: $(NAME)
@@ -33,6 +30,12 @@ all: $(NAME)
 # Rule to create the static library
 $(NAME): $(OBJS) $(LIBFT) $(LIBPRINTF)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT) $(LIBPRINTF)
+
+# Ensure libft is built first
+$(LIBFT):
+	make -C libft
+$(LIBPRINTF):
+	make -C ft_printf
 
 # Clean up build files
 clean:
@@ -47,4 +50,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: extralib all clean fclean re
+.PHONY: all clean fclean re

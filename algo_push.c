@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 23:22:13 by aelaaser          #+#    #+#             */
-/*   Updated: 2024/11/11 21:20:07 by aelaaser         ###   ########.fr       */
+/*   Updated: 2024/11/16 01:21:36 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,5 @@ void	pb(t_stack *stack_a, t_stack *stack_b)
         ft_printf("Error: push failed\n");
         return;
     }
+	ft_printf("pb\n");
 }

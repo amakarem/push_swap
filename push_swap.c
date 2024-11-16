@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 17:29:44 by aelaaser          #+#    #+#             */
-/*   Updated: 2024/11/11 22:39:30 by aelaaser         ###   ########.fr       */
+/*   Updated: 2024/11/16 01:41:13 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,12 +95,30 @@ int	get_value(t_stack *stack, int index)
 	}
 	return (value);
 }
+#include <stdio.h>
 
-
-void	sort_one(t_stack *stack)
+void	sort_asc(t_stack *stack, char adr)
 {
 	if (stack->size >= 2 && stack->top->value > stack->top->next->value)
-		sa(stack);
+	{
+		//printf("\n%d > %d", stack->top->value, stack->top->next->value);
+		if (adr == 'a' || adr == 'A')
+			sa(stack);
+		else
+			sb(stack);
+	}
+}
+
+void	sort_desc(t_stack *stack, char adr)
+{
+	if (stack->size >= 2 && stack->top->value < stack->top->next->value)
+	{
+		//printf("\n%d < %d", stack->top->value, stack->top->next->value);
+		if (adr == 'a' || adr == 'A')
+			sa(stack);
+		else
+			sb(stack);
+	}
 }
 
 void	sort_stack(t_stack *stack, t_stack *stack_b)
@@ -109,9 +127,9 @@ void	sort_stack(t_stack *stack, t_stack *stack_b)
 	int	min_value;
 	int	current_index;
 
-	while (stack->size > 0 && !is_sorted_stack(stack)) //&& !is_sorted_stack(stack)
+	while (stack->size > 0 && !is_sorted_stack(stack))
 	{
-		sort_one(stack);
+		sort_asc(stack, 'a');
 		min_index = find_min_index(stack);
 		min_value = get_value(stack, min_index);
 		current_index = 0;
@@ -131,8 +149,29 @@ void	sort_stack(t_stack *stack, t_stack *stack_b)
 	while (stack_b->size > 0)
 		pa(stack, stack_b);
 	if (!is_sorted_stack(stack))
-	// 	sort_stack(stack, stack_b);
-		print_stack(stack);
+		sort_stack(stack, stack_b);
+		// print_stack(stack);
+}
+
+void	sort_stack_100(t_stack *stack_a, t_stack *stack_b)
+{
+	// int	size;
+
+	// size = stack_a->size * 0.33;
+	// while (stack_a->size > 0 && !is_sorted_stack(stack_a))
+	// {
+	// 	//sort_asc(stack_a, 'a');
+	// 	pb(stack_a, stack_b);
+	// 	sort_desc(stack_b, 'b');
+	// }
+	// while (stack_b->size > 0)
+	// {
+	// 	pa(stack_a, stack_b);
+	// 	sort_asc(stack_a, 'a');
+	// }
+	//print_stack(stack_a);
+	sort_stack(stack_a, stack_b);
+
 }
 
 // void	sort_stackxx(t_stack *stack, t_stack *stack_b)
