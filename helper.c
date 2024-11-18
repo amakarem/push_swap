@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 23:20:02 by aelaaser          #+#    #+#             */
-/*   Updated: 2024/11/18 23:57:15 by aelaaser         ###   ########.fr       */
+/*   Updated: 2024/11/19 00:06:24 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,42 @@ void	bubble_sort(int *arr, int n)
 	}
 }
 
+int find_unindexed_min(t_stack* stack)
+{
+    t_node* current;
+    int min;
+
+	current = stack->top;
+	min = current->value;
+    while (current != NULL)
+	{
+        if (current->index == -1 && current->value < min)
+            min = current->value;
+        current = current->next;
+    }
+    return min;
+}
+
 int	set_index(t_stack *stack)
+{
+	t_node	*current;
+	int		i;
+	int		min;
+
+	i = 0;
+	while (i < stack->size)
+	{
+		current = stack->top;
+		min = find_unindexed_min(stack);
+		while (current->value != min)
+			current = current->next;
+		current->index = i++;
+	}
+	return (0);
+}
+
+
+int	set_index_OLD(t_stack *stack)
 {
 	t_node	*current;
 	int		i;
