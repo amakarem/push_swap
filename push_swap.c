@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 17:29:44 by aelaaser          #+#    #+#             */
-/*   Updated: 2024/11/16 01:41:13 by aelaaser         ###   ########.fr       */
+/*   Updated: 2024/11/18 23:37:40 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,30 @@ int	find_min_index(t_stack *stack)
 	return (min_index);
 }
 
+int	find_max_index(t_stack *stack, int last_max)
+{
+	t_node	*current;
+	int		max_value;
+	int		max_index;
+	int		index;
+
+	current = stack->top;
+	max_value = current->value;
+	max_index = 0;
+	index = 0;
+	while (current != NULL)
+	{
+		if (current->value > max_value && current->value < last_max)
+		{
+			max_value = current->value;
+			max_index = index;
+		}
+		current = current->next;
+		index++;
+	}
+	return (max_index);
+}
+
 int	get_value(t_stack *stack, int index)
 {
 	t_node	*current;
@@ -95,13 +119,11 @@ int	get_value(t_stack *stack, int index)
 	}
 	return (value);
 }
-#include <stdio.h>
 
 void	sort_asc(t_stack *stack, char adr)
 {
 	if (stack->size >= 2 && stack->top->value > stack->top->next->value)
 	{
-		//printf("\n%d > %d", stack->top->value, stack->top->next->value);
 		if (adr == 'a' || adr == 'A')
 			sa(stack);
 		else
@@ -113,7 +135,6 @@ void	sort_desc(t_stack *stack, char adr)
 {
 	if (stack->size >= 2 && stack->top->value < stack->top->next->value)
 	{
-		//printf("\n%d < %d", stack->top->value, stack->top->next->value);
 		if (adr == 'a' || adr == 'A')
 			sa(stack);
 		else
@@ -153,24 +174,338 @@ void	sort_stack(t_stack *stack, t_stack *stack_b)
 		// print_stack(stack);
 }
 
+int findMax(t_stack* stack, int last_max)
+{
+    t_node* current;
+    int max;
+
+	current = stack->top;
+	max = current->value;
+    while (current != NULL)
+	{
+        if (current->value > max && current->value < last_max) {
+            max = current->value;
+        }
+        current = current->next;
+    }
+    return max;
+}
+
+int findValIndex(t_stack* stack, int val) {
+    t_node* current;
+    int valindex;
+
+	current = stack->top;
+	valindex = 0;
+    while (current != NULL)
+	{
+        if (current->value == val) {
+            return (valindex);
+        }
+        current = current->next;
+		valindex++;
+    }
+    return (valindex);
+}
+
+int findMin(t_stack* stack, int last_min)
+{
+    t_node* current;
+    int min;
+
+	current = stack->top;
+	min = current->value;
+    while (current != NULL)
+	{
+        if (current->value < min && current->value > last_min) {
+            min = current->value;
+        }
+        current = current->next;
+    }
+    return min;
+}
+
+
+#include <stdio.h>
+
+int get_chepest_move(t_stack* stack, int rev)
+{
+    int max;
+	int maxindex;
+	int moves;
+
+	max = 2147483647;
+	if (rev == 1)
+		max = -2147483648;
+	moves = stack->size;
+	while (moves > 1)
+	{
+		if (rev == 1)
+			max = findMin(stack, max);
+		else
+			max = findMax(stack, max);
+		maxindex = findValIndex(stack, max);
+		if (maxindex >= (stack->size / 2))
+			moves = stack->size - maxindex;
+		else
+			moves = maxindex;
+	}
+	return (max);
+}
+
+void sortStackDesc(t_stack* stack, t_stack *stack_a) {
+	int max;
+	int maxindex;
+	
+	max = 2147483647;
+    while (stack->size > 0) {
+        max = findMax(stack, max);
+		maxindex = findValIndex(stack, max);
+		if (maxindex >= stack->size / 2)
+		{
+			while (stack->top->value != max) {
+				rrb(stack, 0);
+			}
+		}
+		else
+		{
+	        while (stack->top->value != max) {
+	           	rb(stack, 0);
+        	}
+		}
+		pa(stack_a, stack);
+    }
+}
+
+void	sort_single(t_stack *stack)
+{
+	int	max_index;
+	int	max_value;
+	int	current_index;
+	print_stack(stack);
+	max_value = stack->top->value;
+	while (!is_sorted_stack(stack))
+	{
+		sort_desc(stack, 'b');
+		max_index = find_max_index(stack, max_value);
+		max_value = get_value(stack, max_index);
+		current_index = 0;
+		while (current_index < max_index && stack->top->value != max_value)
+		{
+			if (max_index > stack->size / 2)
+				rb(stack, 0);
+			else
+				rrb(stack, 0);
+			current_index++;
+			if (stack->top->value == max_value)
+				break;
+		}
+		print_stack(stack);
+		break;
+	}
+}
+
+void	get_stack_ready(t_stack *stack, int newval)
+{
+	int maxindex;
+	int val;
+	int	current_index;
+
+	if (stack->size <= 1)
+		return ;
+	val = findMax(stack, newval);
+	maxindex = findValIndex(stack, val);
+	current_index = 0;
+	while (current_index < maxindex && stack->top->value != val)
+	{
+		if (maxindex >= stack->size / 2)
+			rrb(stack, 0);
+		else
+			rb(stack, 0);
+		current_index++;
+		if (stack->top->value == val)
+			break;
+	}
+}
+
+void	get_asc_stack_ready(t_stack *stack, int newval)
+{
+	int maxindex;
+	int val;
+	int	current_index;
+
+	if (stack->size <= 1)
+		return ;
+	val = findMin(stack, newval);
+	maxindex = findValIndex(stack, val);
+	current_index = 0;
+	while (current_index < maxindex && stack->top->value != val)
+	{
+		if (maxindex >= stack->size / 2)
+			rra(stack, 0);
+		else
+			ra(stack, 0);
+		current_index++;
+		if (stack->top->value == val)
+			break;
+	}
+}
+
+void	move_to_b(t_stack *stack_a, t_stack *stack_b)
+{
+	int max;
+	int maxindex;
+	int	current_index;
+
+	while (stack_a->size > 0)
+	{
+		if (stack_b->size >= 2)
+		{
+			max = get_chepest_move(stack_a, 0);
+			maxindex = findValIndex(stack_a, max);
+			current_index = 0;
+			while (current_index < maxindex && stack_a->top->value != max)
+			{
+				if (maxindex >= stack_a->size / 2)
+					rra(stack_a, 0);
+				else
+					ra(stack_a, 0);
+				current_index++;
+				if (stack_a->top->value == max)
+					break;
+			}
+		}
+		get_stack_ready(stack_b, max);
+		pb(stack_a, stack_b);
+	}
+}
+
+void	move_to_a(t_stack *stack_a, t_stack *stack_b)
+{
+	int min;
+	int minindex;
+	int	current_index;
+
+	while (stack_b->size > 0)
+	{
+		if (stack_a->size >= 2)
+		{
+			min = get_chepest_move(stack_b, 1);
+			minindex = findValIndex(stack_b, min);
+			current_index = 0;
+			while (current_index < minindex && stack_b->top->value != min)
+			{
+				if (minindex >= stack_b->size / 2)
+					rra(stack_b, 0);
+				else
+					ra(stack_b, 0);
+				current_index++;
+				if (stack_b->top->value == min)
+					break;
+			}
+		}
+		get_asc_stack_ready(stack_a, min);
+		pa(stack_a, stack_b);
+	}
+}
+
 void	sort_stack_100(t_stack *stack_a, t_stack *stack_b)
 {
-	// int	size;
+	//int max;
+	//int maxindex;
+	//int	current_index;
+set_index(stack_a);
+	print_stack(stack_a);
+return ;
 
-	// size = stack_a->size * 0.33;
-	// while (stack_a->size > 0 && !is_sorted_stack(stack_a))
+	if (stack_a->size > 3 && !is_sorted_stack(stack_a))
+	{
+		move_to_b(stack_a, stack_b);
+			print_stack(stack_b);
+			ft_printf("\n-----------");
+		move_to_a(stack_a, stack_b);
+	}
+	// sort_asc(stack_a, 'A');
+	// while (stack_b->size > 0)
 	// {
-	// 	//sort_asc(stack_a, 'a');
-	// 	pb(stack_a, stack_b);
-	// 	sort_desc(stack_b, 'b');
+	// 	pa(stack_a, stack_b);
+	// 	sort_asc(stack_a, 'A');
+	// }
+	if (!is_sorted_stack(stack_a))
+		sort_stack_100(stack_a, stack_b);
+	print_stack(stack_a);
+}
+
+
+void	sort_stack_100XXXX(t_stack *stack_a, t_stack *stack_b)
+{
+	int i;
+	while (stack_a->size > 2)
+	{
+		if (stack_b->size >= 2)
+		{
+			i = 0;
+			while (i < stack_a->size)
+			{
+				if (stack_a->top->value > stack_b->top->value && stack_a->top->value > stack_b->top->next->value)
+					break;
+				ra(stack_a, 0);
+				i++;
+			}
+		}
+		pb(stack_a, stack_b);
+		sort_desc(stack_b, 'b');
+	}
+	print_stack(stack_b);
+}
+
+void	sort_stack_100_chink(t_stack *stack_a, t_stack *stack_b)
+{
+	int	chunk_size;
+	int total_size;
+	int i;
+	int j;
+
+	total_size = stack_a->size;
+	chunk_size = stack_a->size / 2;
+	j = 0;
+	while (j <= total_size && !is_sorted_stack(stack_a))
+	{
+		i = 0;
+		while (total_size > 0 && i <= chunk_size && !is_sorted_stack(stack_a))
+		{
+			pb(stack_a, stack_b);
+			sort_desc(stack_b, 'b');
+			i++;
+			j++;
+		}
+			//print_stack(stack_b);
+		sortStackDesc(stack_b, stack_a);
+		print_stack(stack_b);
+		break;
+		if ((!is_sorted_stack(stack_a)))
+		{
+			while (i-- > 0)
+				ra(stack_a, 0);
+		}
+	}
+	// if (!is_sorted_stack(stack_a))
+	// 	sort_stack_100(stack_a, stack_b);
+	print_stack(stack_a);
+	// while (stack_b->size > 0)
+	// {
+	// 	pa(stack_a, stack_b);
+	// 	sort_asc(stack_a, 'a');
 	// }
 	// while (stack_b->size > 0)
 	// {
 	// 	pa(stack_a, stack_b);
 	// 	sort_asc(stack_a, 'a');
 	// }
-	//print_stack(stack_a);
-	sort_stack(stack_a, stack_b);
+	// if (!is_sorted_stack(stack_a))
+	// 	sort_stack(stack_a, stack_b);
+	//print_stack(stack_b);
+	// //sort_stack(stack_a, stack_b);
 
 }
 

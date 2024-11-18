@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 17:31:09 by aelaaser          #+#    #+#             */
-/*   Updated: 2024/11/16 00:58:07 by aelaaser         ###   ########.fr       */
+/*   Updated: 2024/11/18 23:46:35 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include "ft_printf/ft_printf.h"
 
 typedef struct s_node {
+	int				index;
 	int				value;
 	struct s_node	*next;
 }	t_node;
@@ -48,6 +49,7 @@ void	rrb(t_stack *stack_b, int noprint);
 void	rr(t_stack *stack_a, t_stack *stack_b);
 void	rrr(t_stack *stack_a, t_stack *stack_b);
 // int		find_min_index(t_stack *stack);
+int		set_index(t_stack *stack);
 void	sort_stack(t_stack *stack, t_stack *stack_b);
 void	sort_stack_100(t_stack *stack, t_stack *stack_b);
 void	push_swap(t_stack *stack_a, t_stack *stack_b);

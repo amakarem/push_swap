@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 23:22:13 by aelaaser          #+#    #+#             */
-/*   Updated: 2024/11/16 01:21:36 by aelaaser         ###   ########.fr       */
+/*   Updated: 2024/11/18 23:48:39 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,22 @@ void	pa(t_stack *stack_a, t_stack *stack_b)
 {
 	if (stack_b->size == 0)
 		return ;
-    if (push(stack_a, pop(stack_b)) == -1)
-    {
-        ft_printf("Error: push failed\n");
-        return;
-    }
-    ft_printf("pa\n");
+	if (push(stack_a, pop(stack_b)) == -1)
+	{
+		ft_printf("Error: push failed\n");
+		return ;
+	}
+	ft_printf("pa\n");
 }
 
 void	pb(t_stack *stack_a, t_stack *stack_b)
 {
 	if (stack_a->size == 0)
 		return ;
-    if (push(stack_b, pop(stack_a)) == -1)
-    {
-        ft_printf("Error: push failed\n");
-        return;
-    }
+	if (push(stack_b, pop(stack_a)) == -1)
+	{
+		ft_printf("Error: push failed\n");
+		return ;
+	}
 	ft_printf("pb\n");
 }
