@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 23:20:02 by aelaaser          #+#    #+#             */
-/*   Updated: 2024/11/19 01:50:07 by aelaaser         ###   ########.fr       */
+/*   Updated: 2024/11/19 02:46:47 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,51 +58,89 @@ void	set_index(t_stack *stack)
 	}
 }
 
-static int	get_max_bits(t_stack *stack)
+static void	sort_asc(t_stack *stack, char adr)
+{
+	if (stack->size >= 2 && stack->top->index > stack->top->next->index)
+	{
+		if (adr == 'a' || adr == 'A')
+			sa(stack);
+		else
+			sb(stack);
+	}
+}
+
+static int	get_min_index(t_stack *stack)
+{
+	t_node	*head;
+	int		min;
+
+	head = stack->top;
+	min = head->index;
+	while (head)
+	{
+		if (head->index < min)
+			min = head->index;
+		head = head->next;
+	}
+	return (min);
+}
+
+// static int	get_max_index(t_stack *stack)
+// {
+// 	t_node	*head;
+// 	int		max;
+
+// 	head = stack->top;
+// 	max = head->index;
+// 	while (head)
+// 	{
+// 		if (head->index > max)
+// 			max = head->index;
+// 		head = head->next;
+// 	}
+// 	return (max);
+// }
+
+static int	get_position(t_stack *stack, int maxindex)
+{
+	t_node	*head;
+	int		position;
+
+	head = stack->top;
+	position = 0;
+	while (head)
+	{
+		if (head->index == maxindex)
+			return (position);
+		head = head->next;
+		position++;
+	}
+	return (-1);
+}
+
+
+void	selected_sort(t_stack *stack_a, t_stack *stack_b)
 {
 	t_node	*head;
 	int		max;
-	int		max_bits;
+	int		position;
 
-	head = stack->top;
-	max = head->index;
-	max_bits = 0;
-	while (head)
+	while (stack_a->size > 2)
 	{
-		if (head->index > max)
-			max = head->index;
-		head = head->next;
-	}
-	while ((max >> max_bits) != 0)
-		max_bits++;
-	return (max_bits);
-}
-
-void	radix_sort(t_stack *stack_a, t_stack *stack_b)
-{
-	t_node	*head_a;
-	int		i;
-	int		j;
-	int		size;
-	int		max_bits;
-
-	i = 0;
-	head_a = stack_a->top;
-	size = stack_a->size;
-	max_bits = get_max_bits(stack_a);
-	while (i < max_bits)
-	{
-		j = 0;
-		while (j++ < size)
+		head = stack_a->top;
+		max = get_min_index(stack_a);
+		position = get_position(stack_a, max);
+		while (stack_a->top->index != max)
 		{
-			head_a = stack_a->top;
-			if (((head_a->index >> i) & 1) == 1)
-				ra(stack_a, 0);
+			if (position >= stack_a->size / 2)
+				rra(stack_a, 0);
 			else
-				pb(stack_a, stack_b);
+				ra(stack_a, 0);
 		}
-		while (stack_b->size != 0)
-			pa(stack_a, stack_b);
-		i++;
+		pb(stack_a, stack_b);
 	}
+	sort_asc(stack_a, 'A');
+	while (stack_b->size > 0)
+		pa(stack_a, stack_b);
+	//set_index(stack_a);
 }

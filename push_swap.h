@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 17:31:09 by aelaaser          #+#    #+#             */
-/*   Updated: 2024/11/19 00:57:28 by aelaaser         ###   ########.fr       */
+/*   Updated: 2024/11/19 02:46:59 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,6 @@ void	rrr(t_stack *stack_a, t_stack *stack_b);
 void	set_index(t_stack *stack);
 void	sort_stack(t_stack *stack, t_stack *stack_b);
 void	sort_stack_100(t_stack *stack, t_stack *stack_b);
-void	radix_sort(t_stack *stack_a, t_stack *stack_b);
+void	selected_sort(t_stack *stack_a, t_stack *stack_b);
 void	push_swap(t_stack *stack_a, t_stack *stack_b);
 #endif
