@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 23:20:02 by aelaaser          #+#    #+#             */
-/*   Updated: 2024/11/19 02:46:47 by aelaaser         ###   ########.fr       */
+/*   Updated: 2024/11/19 03:47:10 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,31 @@ void	set_index(t_stack *stack)
 	}
 }
 
-static void	sort_asc(t_stack *stack, char adr)
+// static void	sort_asc_by_index(t_stack *stack, char adr)
+// {
+// 	if (stack->size >= 2 && stack->top->index == stack->top->next->index + 1)
+// 	{
+// 		if (adr == 'a' || adr == 'A')
+// 			sa(stack);
+// 		else
+// 			sb(stack);
+// 	}
+// }
+
+static void	sort_asc_by_index(t_stack *stack, char adr)
 {
 	if (stack->size >= 2 && stack->top->index > stack->top->next->index)
+	{
+		if (adr == 'a' || adr == 'A')
+			sa(stack);
+		else
+			sb(stack);
+	}
+}
+
+static void	sort_desc(t_stack *stack, char adr)
+{
+	if (stack->size >= 2 && stack->top->value < stack->top->next->value)
 	{
 		if (adr == 'a' || adr == 'A')
 			sa(stack);
@@ -132,14 +154,19 @@ void	selected_sort(t_stack *stack_a, t_stack *stack_b)
 		position = get_position(stack_a, max);
 		while (stack_a->top->index != max)
 		{
-			if (position >= stack_a->size / 2)
+			if (stack_a->top->index == (max + 1))
+				pb(stack_a, stack_b);
+			else if (stack_a->top->next->index == max)
+				sa(stack_a);
+			else if (position >= stack_a->size / 2)
 				rra(stack_a, 0);
 			else
 				ra(stack_a, 0);
 		}
 		pb(stack_a, stack_b);
+		sort_desc(stack_b, 'b');
 	}
-	sort_asc(stack_a, 'A');
+	sort_asc_by_index(stack_a, 'A');
 	while (stack_b->size > 0)
 		pa(stack_a, stack_b);
 	//set_index(stack_a);
