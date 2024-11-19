@@ -6,32 +6,32 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 23:20:02 by aelaaser          #+#    #+#             */
-/*   Updated: 2024/11/19 01:00:30 by aelaaser         ###   ########.fr       */
+/*   Updated: 2024/11/19 01:50:07 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int find_unindexed_min(t_stack* stack)
+int	find_unindexed_min(t_stack *stack)
 {
-    t_node* current;
-    int min;
+	t_node	*current;
+	int		min;
 
 	current = stack->top;
 	while (current->next != NULL)
 	{
-        if (current->index == -1)
-            break;
-        current = current->next;
-    }
+		if (current->index == -1)
+			break ;
+		current = current->next;
+	}
 	min = current->value;
-    while (current != NULL)
+	while (current != NULL)
 	{
-        if (current->index == -1 && current->value < min)
-            min = current->value;
-        current = current->next;
-    }
-    return min;
+		if (current->index == -1 && current->value < min)
+			min = current->value;
+		current = current->next;
+	}
+	return (min);
 }
 
 void	set_index(t_stack *stack)
@@ -50,7 +50,7 @@ void	set_index(t_stack *stack)
 			if (current->index == -1 && current->value == min)
 			{
 				current->index = i;
-				break;
+				break ;
 			}
 			current = current->next;
 		}
