@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 23:20:02 by aelaaser          #+#    #+#             */
-/*   Updated: 2024/11/19 03:47:10 by aelaaser         ###   ########.fr       */
+/*   Updated: 2024/11/19 03:57:10 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,19 +144,19 @@ static int	get_position(t_stack *stack, int maxindex)
 void	selected_sort(t_stack *stack_a, t_stack *stack_b)
 {
 	t_node	*head;
-	int		max;
+	int		min;
 	int		position;
 
 	while (stack_a->size > 2)
 	{
 		head = stack_a->top;
-		max = get_min_index(stack_a);
-		position = get_position(stack_a, max);
-		while (stack_a->top->index != max)
+		min = get_min_index(stack_a);
+		position = get_position(stack_a, min);
+		while (stack_a->top->index != min)
 		{
-			if (stack_a->top->index == (max + 1))
+			if (stack_a->top->index == (min + 1))
 				pb(stack_a, stack_b);
-			else if (stack_a->top->next->index == max)
+			else if (stack_a->top->next->index == min)
 				sa(stack_a);
 			else if (position >= stack_a->size / 2)
 				rra(stack_a, 0);
