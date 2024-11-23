@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 17:34:26 by aelaaser          #+#    #+#             */
-/*   Updated: 2024/11/23 18:43:30 by aelaaser         ###   ########.fr       */
+/*   Updated: 2024/11/23 20:04:09 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ void	push_swap(t_stack *stack_a, t_stack *stack_b)
 	if (stack_a->size <= 1)
 		return ;
 	set_index(stack_a);
-	if (stack_a->size >= 10)
-		//mapping_sort(stack_a, stack_b);
-		selected_sort(stack_a, stack_b);
-	else
-		sort_stack(stack_a, stack_b);
+	//if (stack_a->size >= 10)
+		maping_sort(stack_a, stack_b);
+		//selected_sort(stack_a, stack_b);
+	//else
+	//	sort_stack(stack_a, stack_b);
 }
 
 int	main(int argc, char **argv)

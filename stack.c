@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 20:40:21 by aelaaser          #+#    #+#             */
-/*   Updated: 2024/11/23 18:43:00 by aelaaser         ###   ########.fr       */
+/*   Updated: 2024/11/23 20:40:47 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ int	push(t_stack *stack, int value, int index)
 	new_node = malloc(sizeof(t_node));
 	if (!new_node)
 		return (-1);
-	new_node->value = value;
 	new_node->index = index;
+	new_node->value = value;
 	new_node->next = stack->top;
 	stack->top = new_node;
 	stack->size++;

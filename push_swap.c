@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 17:29:44 by aelaaser          #+#    #+#             */
-/*   Updated: 2024/11/19 02:41:24 by aelaaser         ###   ########.fr       */
+/*   Updated: 2024/11/23 19:14:41 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ void	sort_asc(t_stack *stack, char adr)
 	}
 }
 
-void	sort_desc(t_stack *stack, char adr)
+static void	sort_desc(t_stack *stack, char adr)
 {
 	if (stack->size >= 2 && stack->top->index < stack->top->next->index)
 	{
