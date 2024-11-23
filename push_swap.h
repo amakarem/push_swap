@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 17:31:09 by aelaaser          #+#    #+#             */
-/*   Updated: 2024/11/19 02:46:59 by aelaaser         ###   ########.fr       */
+/*   Updated: 2024/11/23 18:44:02 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int		ft_printf(const char *format, ...);
 int		ft_isnum(char *s);
 t_stack	*init_stack(void);
 int		ft_already_exist_stack(t_stack *stack, int n);
-int		push(t_stack *stack, int value);
+int		push(t_stack *stack, int value, int index);
 int		pop(t_stack *stack);
 void	free_stack(t_stack *stack);
 void	print_stack(t_stack *stack);

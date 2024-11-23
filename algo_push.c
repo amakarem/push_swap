@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 23:22:13 by aelaaser          #+#    #+#             */
-/*   Updated: 2024/11/18 23:48:39 by aelaaser         ###   ########.fr       */
+/*   Updated: 2024/11/23 18:49:12 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,14 @@
 
 void	pa(t_stack *stack_a, t_stack *stack_b)
 {
+	t_node	*top_node;
+	int index;
+
 	if (stack_b->size == 0)
 		return ;
-	if (push(stack_a, pop(stack_b)) == -1)
+	top_node = stack_b->top;
+	index = top_node->index;
+	if (push(stack_a, pop(stack_b), index) == -1)
 	{
 		ft_printf("Error: push failed\n");
 		return ;
@@ -26,9 +31,14 @@ void	pa(t_stack *stack_a, t_stack *stack_b)
 
 void	pb(t_stack *stack_a, t_stack *stack_b)
 {
+	t_node	*top_node;
+	int index;
+
 	if (stack_a->size == 0)
 		return ;
-	if (push(stack_b, pop(stack_a)) == -1)
+	top_node = stack_a->top;
+	index = top_node->index;
+	if (push(stack_b, pop(stack_a), index) == -1)
 	{
 		ft_printf("Error: push failed\n");
 		return ;
