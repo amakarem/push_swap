@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 23:22:13 by aelaaser          #+#    #+#             */
-/*   Updated: 2024/11/24 20:20:05 by aelaaser         ###   ########.fr       */
+/*   Updated: 2024/11/24 23:31:19 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	pa(t_stack *stack_a, t_stack *stack_b)
 {
 	t_node	*top_node;
-	int index;
+	int		index;
 
 	if (stack_b->size == 0)
 		return ;
@@ -32,7 +32,7 @@ void	pa(t_stack *stack_a, t_stack *stack_b)
 void	pb(t_stack *stack_a, t_stack *stack_b)
 {
 	t_node	*top_node;
-	int index;
+	int		index;
 
 	if (stack_a->size == 0)
 		return ;

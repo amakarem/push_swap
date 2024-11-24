@@ -6,38 +6,38 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 18:30:55 by aelaaser          #+#    #+#             */
-/*   Updated: 2024/11/24 23:26:44 by aelaaser         ###   ########.fr       */
+/*   Updated: 2024/11/24 23:54:17 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int ft_unsigend(int n)
+int	ft_unsigend(int n)
 {
 	if (n < 0)
 		return (n * -1);
 	return (n);
 }
 
-int ft_max(int x, int y)
+int	ft_max(int x, int y)
 {
 	if (x > y)
 		return (x);
 	return (y);
 }
 
-int ft_min(int x, int y)
+int	ft_min(int x, int y)
 {
 	if (x < y)
 		return (x);
 	return (y);
 }
 
-int get_total_cost(int a, int b)
+int	get_total_cost(int a, int b)
 {
 	int	x;
 	int	y;
-	
+
 	x = ft_unsigend(a);
 	y = ft_unsigend(b);
 	if ((a > 0 && b > 0) || (a < 0 && b < 0))
@@ -50,7 +50,7 @@ int get_total_cost(int a, int b)
 	return (x + y);
 }
 
-int moves_to_top(t_stack *stack, int index)
+int	moves_to_top(t_stack *stack, int index)
 {
 	int	pos;
 
@@ -93,7 +93,6 @@ static int	get_min_index(t_stack *stack)
 	}
 	return (min);
 }
-
 
 // int	find_best_moveXXXX(t_stack *stack_a, t_stack *stack_b)
 // {
@@ -149,12 +148,10 @@ static int	get_min_index(t_stack *stack)
 // 	return (1);
 // }
 
-
-int find_alternative_cost(t_stack *stack_a, t_stack *stack_b, int b_best)
+int	find_alternative_cost(t_stack *stack_a, t_stack *stack_b, int b_best)
 {
 	t_node	*head_a;
 	int		a_best;
-//	int		cost;
 
 	head_a = stack_a->top;
 	a_best = -1;
@@ -171,7 +168,7 @@ int find_alternative_cost(t_stack *stack_a, t_stack *stack_b, int b_best)
 		head_a = head_a->next;
 	}
 	if (a_best == -1)
-		a_best = get_min_index(stack_a);	
+		a_best = get_min_index(stack_a);
 	return (get_total_cost(moves_to_top(stack_b, b_best), moves_to_top(stack_a, a_best)));
 }
 
@@ -211,8 +208,7 @@ int find_alternative_cost(t_stack *stack_a, t_stack *stack_b, int b_best)
 // 	return (1);
 // }
 
-
-int find_alternative_move(t_stack *stack_a, t_stack *stack_b)
+int	find_alternative_move(t_stack *stack_a, t_stack *stack_b)
 {
 	t_node	*head_a;
 	t_node	*head_b;
@@ -239,27 +235,18 @@ int find_alternative_move(t_stack *stack_a, t_stack *stack_b)
 	{
 		if (head_a->next && head_a->index < stack_b->best && head_a->next->index > stack_b->best)
 		{
-			//ft_printf("\n----Between %i and %i adding %i", head_a->index, head_a->next->index, stack_b->best);
 			stack_a->best = head_a->next->index;
 			ok = 1;
 		}
 		else if (!head_a->next && head_a->index < stack_b->best && stack_a->top->index > stack_b->best)
 		{
-			//ft_printf("\n----Between %i and %i adding %i", head_a->index, stack_a->top->index, stack_b->best);
 			stack_a->best = stack_a->top->index;
 			ok = 1;
 		}
 		head_a = head_a->next;
 	}
 	if (ok == 0)
-	{
 		stack_a->best = get_min_index(stack_a);
-	}
-	//ft_printf("\n Alternative Move:%i over %i  COST:%i\n", stack_b->best, stack_a->best, find_alternative_cost(stack_a, stack_b, stack_b->best));
-	//print_stack(stack_b);
-	//ft_printf("\n**************************************\n");
-	//print_stack(stack_a);
-	//ft_printf("\n Cost:%i\n", moves_to_top(stack_a, stack_a->best));
 	return (1);
 }
 
@@ -271,7 +258,7 @@ int	find_best_move(t_stack *stack_a, t_stack *stack_b)
 	int		cost_b;
 	int		total_cost;
 	int		score;
-	int 	best_score;
+	int		best_score;
 	int		c_index;
 
 	if (stack_b->size == 0)
@@ -296,7 +283,6 @@ int	find_best_move(t_stack *stack_a, t_stack *stack_b)
 					score = total_cost + ft_unsigend(head_a->index - c_index);
 					if (score < best_score)
 					{
-						// ft_printf("\n--MAIN--Between %i and %i adding %i", head_a->index, c_index, head_b->index);
 						best_score = score;
 						stack_a->best = c_index;
 						stack_b->best = head_b->index;
@@ -314,14 +300,11 @@ int	find_best_move(t_stack *stack_a, t_stack *stack_b)
 
 void	do_move_solo(t_stack *stack, char identity)
 {
-	int cost;
+	int	cost;
 
 	if (stack->top->index == stack->best)
 		return ;
 	cost = moves_to_top(stack, stack->best);
-
-	// ft_printf("\n %c Best:%i Top:%i Cost:%i", identity, stack->best, stack->top->index, cost);
-	//return;
 	if (cost > 0)
 	{
 		while (stack->top->index != stack->best)
@@ -348,13 +331,12 @@ void	do_move_solo(t_stack *stack, char identity)
 
 void	do_move_common(t_stack *stack_a, t_stack *stack_b)
 {
-	int cost_a;
-	int cost_b;
-	int i;
+	int	cost_a;
+	int	cost_b;
+	int	i;
 
 	cost_a = moves_to_top(stack_a, stack_a->best);
 	cost_b = moves_to_top(stack_b, stack_b->best);
-	//ft_printf("\nTarget A:%i Top A:%i Cost:%i  ---  Target B:%i Top B:%i Cost:%i \n", stack_a->best, stack_a->top->index, cost_a, stack_b->best, stack_b->top->index, cost_b);
 	if (cost_a > 0 && cost_b > 0)
 	{
 		i = ft_min(cost_a, cost_b);
@@ -369,74 +351,19 @@ void	do_move_common(t_stack *stack_a, t_stack *stack_b)
 	}
 	do_move_solo(stack_a, 'a');
 	do_move_solo(stack_b, 'b');
-	if (stack_a->best != stack_a->top->index)
-	{
-		ft_printf("\nError in A, top:%i Best:%i\n", stack_a->top->index, stack_a->best);
-		print_stack(stack_a);
-		ft_printf("\n---------------------\n");
-		print_stack(stack_b);
-	}
-	if (stack_b->best != stack_b->top->index)
-	{
-		ft_printf("\nError in B, top:%i Best:%i\n", stack_b->top->index, stack_b->best);
-		print_stack(stack_b);
-		ft_printf("\n---------------------\n");
-		print_stack(stack_a);
-	}
 }
 
 void	maping_sort(t_stack *stack_a, t_stack *stack_b)
 {
-	//int		index;
-	// int		position;
 	while (stack_a->size > 2)
 		pb(stack_a, stack_b);
 	sort_asc_by_index(stack_a, 'A');
-
 	while (stack_b->size > 0)
 	{
 		if (find_best_move(stack_a, stack_b) == 1)
-		{
 			do_move_common(stack_a, stack_b);
-		}
-		//ft_printf("\nMoving %i over %i, A Best:%i, B Best:%i -- ", stack_b->top->index, stack_a->top->index, stack_a->best, stack_b->best);
 		pa(stack_a, stack_b);
-		//print_stack(stack_a);
 	}
 	stack_a->best = get_min_index(stack_a);
 	do_move_solo(stack_a, 'a');
-	// print_stack(stack_a);
-	// while (stack_a->size > 2)
-	// {
-	// 	if (find_best_move(stack_a, stack_b) == 1)
-	// 	{
-	// 		do_move_common(stack_a, stack_b);
-	// 	}
-	// 	//index = to_move(stack_a, stack_b);
-	// 	pb(stack_a, stack_b);
-	// }
-	// print_stack(stack_a);
-	// while (stack_a->size > 2)
-	// {
-	// 	head = stack_a->top;
-	// 	index = to_move(stack_a, stack_b);
-	// 	position = get_position(stack_a, index);
-	// 	while (stack_a->top->index != index)
-	// 	{
-	// 		if (stack_a->top->index == (index + 1))
-	// 			pb(stack_a, stack_b);
-	// 		else if (stack_a->top->next->index == index)
-	// 			sa(stack_a);
-	// 		else if (position >= stack_a->size / 2)
-	// 			rra(stack_a, 0);
-	// 		else
-	// 			ra(stack_a, 0);
-	// 	}
-	// 	pb(stack_a, stack_b);
-	// 	sort_desc(stack_b, 'b');
-	// }
-	// sort_asc_by_index(stack_a, 'A');
-	// print_stack(stack_b);
-	// while (stack_b->size > 0)
-	// 	pa(stack_a, stack_b);
 }
