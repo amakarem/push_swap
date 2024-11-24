@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 23:20:02 by aelaaser          #+#    #+#             */
-/*   Updated: 2024/11/23 20:56:17 by aelaaser         ###   ########.fr       */
+/*   Updated: 2024/11/24 19:57:07 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	set_index(t_stack *stack)
 		}
 		i++;
 	}
-	stack->max = (i - 1);
+	//stack->max = (i - 1);
 }
 
 // static void	sort_asc_by_index(t_stack *stack, char adr)
@@ -70,7 +70,7 @@ void	set_index(t_stack *stack)
 // 	}
 // }
 
-static void	sort_asc_by_index(t_stack *stack, char adr)
+void	sort_asc_by_index(t_stack *stack, char adr)
 {
 	if (stack->size >= 2 && stack->top->index > stack->top->next->index)
 	{
@@ -92,7 +92,7 @@ void	sort_desc(t_stack *stack, char adr)
 	}
 }
 
-static int	get_min_index(t_stack *stack)
+int	get_min_index(t_stack *stack)
 {
 	t_node	*head;
 	int		min;
