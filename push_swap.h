@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 17:31:09 by aelaaser          #+#    #+#             */
-/*   Updated: 2024/11/25 00:13:18 by aelaaser         ###   ########.fr       */
+/*   Updated: 2024/11/25 00:33:24 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,10 @@ int		get_min_index(t_stack *stack);
 void	set_index(t_stack *stack);
 int		ft_unsigend(int n);
 int		ft_min(int x, int y);
-int		get_total_cost(int a, int b);
-int		moves_to_top(t_stack *stack, int index);
+int		get_cost(int a, int b);
+int		moves_qty(t_stack *stack, int index);
 void	do_move_solo(t_stack *stack, char identity);
 void	do_move_common(t_stack *stack_a, t_stack *stack_b);
+void	set_b_best(t_stack	*stack_a, t_stack *stack_b);
 void	maping_sort(t_stack *stack_a, t_stack *stack_b);
 #endif
