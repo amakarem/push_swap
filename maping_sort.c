@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 18:30:55 by aelaaser          #+#    #+#             */
-/*   Updated: 2024/11/25 00:06:53 by aelaaser         ###   ########.fr       */
+/*   Updated: 2024/11/25 00:12:36 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,61 +124,6 @@ int	find_best_move(t_stack *stack_a, t_stack *stack_b)
 	if (best_score == 2147483647)
 		return (find_alternative_move(stack_a, stack_b));
 	return (1);
-}
-
-void	do_move_solo(t_stack *stack, char identity)
-{
-	int	cost;
-
-	if (stack->top->index == stack->best)
-		return ;
-	cost = moves_to_top(stack, stack->best);
-	if (cost > 0)
-	{
-		while (stack->top->index != stack->best)
-		{
-			if (identity == 'a' || identity == 'A')
-				ra(stack, 0);
-			else
-				rb(stack, 0);
-			cost--;
-		}
-	}
-	else if (cost < 0)
-	{
-		while (stack->top->index != stack->best)
-		{
-			if (identity == 'a' || identity == 'A')
-				rra(stack, 0);
-			else
-				rrb(stack, 0);
-			cost++;
-		}
-	}
-}
-
-void	do_move_common(t_stack *stack_a, t_stack *stack_b)
-{
-	int	cost_a;
-	int	cost_b;
-	int	i;
-
-	cost_a = moves_to_top(stack_a, stack_a->best);
-	cost_b = moves_to_top(stack_b, stack_b->best);
-	if (cost_a > 0 && cost_b > 0)
-	{
-		i = ft_min(cost_a, cost_b);
-		while (i-- > 0)
-			rr(stack_a, stack_b);
-	}
-	else if (cost_a < 0 && cost_b < 0)
-	{
-		i = ft_min(ft_unsigend(cost_a), ft_unsigend(cost_b));
-		while (i-- > 0)
-			rrr(stack_a, stack_b);
-	}
-	do_move_solo(stack_a, 'a');
-	do_move_solo(stack_b, 'b');
 }
 
 void	maping_sort(t_stack *stack_a, t_stack *stack_b)
