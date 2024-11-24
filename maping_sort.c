@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 18:30:55 by aelaaser          #+#    #+#             */
-/*   Updated: 2024/11/25 00:38:56 by aelaaser         ###   ########.fr       */
+/*   Updated: 2024/11/25 00:41:55 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,6 @@ int	find_best_move(t_stack *stack_a, t_stack *stack_b)
 	int		best_score;
 	int		c_index;
 
-	if (stack_b->size == 0)
-		return (0);
 	head_b = stack_b->top;
 	best_score = 2147483647;
 	while (head_b)
