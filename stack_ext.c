@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 20:06:51 by aelaaser          #+#    #+#             */
-/*   Updated: 2024/11/16 01:00:46 by aelaaser         ###   ########.fr       */
+/*   Updated: 2024/11/25 00:03:08 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,50 @@ int	is_sorted_stack(t_stack *stack)
 		index++;
 	}
 	return (1);
+}
+
+static int	find_unindexed_min(t_stack *stack)
+{
+	t_node	*current;
+	int		min;
+
+	current = stack->top;
+	while (current->next != NULL)
+	{
+		if (current->index == -1)
+			break ;
+		current = current->next;
+	}
+	min = current->value;
+	while (current != NULL)
+	{
+		if (current->index == -1 && current->value < min)
+			min = current->value;
+		current = current->next;
+	}
+	return (min);
+}
+
+void	set_index(t_stack *stack)
+{
+	t_node	*current;
+	int		i;
+	int		min;
+
+	i = 0;
+	while (i < stack->size)
+	{
+		current = stack->top;
+		min = find_unindexed_min(stack);
+		while (current)
+		{
+			if (current->index == -1 && current->value == min)
+			{
+				current->index = i;
+				break ;
+			}
+			current = current->next;
+		}
+		i++;
+	}
 }

@@ -6,7 +6,7 @@
 #    By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/17 23:01:14 by aelaaser          #+#    #+#              #
-#    Updated: 2024/11/23 20:02:47 by aelaaser         ###   ########.fr        #
+#    Updated: 2024/11/25 00:08:35 by aelaaser         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ CC = gcc
 CFLAGS = -Wall -Werror -Wextra
 
 # Source files
-SRCS = 	stack.c stack_ext.c algo_push.c algo_rotate.c algo_rr.c algo_swap.c main.c helper.c maping_sort.c
+SRCS = 	stack.c stack_ext.c algo_push.c algo_rotate.c algo_rr.c algo_swap.c main.c helper.c maping_sort.c maping_helper.c
 
 OBJS = $(SRCS:.c=.o)
 

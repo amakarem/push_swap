@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 17:31:09 by aelaaser          #+#    #+#             */
-/*   Updated: 2024/11/24 17:29:13 by aelaaser         ###   ########.fr       */
+/*   Updated: 2024/11/25 00:08:09 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,14 @@ void	rrr(t_stack *stack_a, t_stack *stack_b);
 int		get_position(t_stack *stack, int maxindex);
 void	sort_desc(t_stack *stack, char adr);
 void	sort_asc_by_index(t_stack *stack, char adr);
+int		get_min_index(t_stack *stack);
 void	set_index(t_stack *stack);
+int		ft_unsigend(int n);
+int		ft_min(int x, int y);
+int		get_total_cost(int a, int b);
+int		moves_to_top(t_stack *stack, int index);
 //void	sort_stack(t_stack *stack, t_stack *stack_b);
 //void	sort_stack_100(t_stack *stack, t_stack *stack_b);
-void	selected_sort(t_stack *stack_a, t_stack *stack_b);
 void	maping_sort(t_stack *stack_a, t_stack *stack_b);
 void	push_swap(t_stack *stack_a, t_stack *stack_b);
 #endif
