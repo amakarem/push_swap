@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 17:31:09 by aelaaser          #+#    #+#             */
-/*   Updated: 2024/11/25 01:32:25 by aelaaser         ###   ########.fr       */
+/*   Updated: 2024/11/25 04:28:03 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include "libft/libft.h"
-# include "ft_printf/ft_printf.h"
 
 typedef struct s_node {
 	int				index;
@@ -36,7 +35,6 @@ int		ft_already_exist_stack(t_stack *stack, int n);
 int		push(t_stack *stack, int value, int index);
 int		pop(t_stack *stack);
 void	free_stack(t_stack *stack);
-void	print_stack(t_stack *stack);
 int		ft_isnum(char *s);
 int		is_sorted_stack(t_stack *stack);
 void	sa(t_stack *stack_a);

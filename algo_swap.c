@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 23:21:30 by aelaaser          #+#    #+#             */
-/*   Updated: 2024/11/05 00:00:32 by aelaaser         ###   ########.fr       */
+/*   Updated: 2024/11/25 04:23:26 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	sa(t_stack *stack_a)
 	first->next = second->next;
 	second->next = first;
 	stack_a->top = second;
-	ft_printf("sa\n");
+	ft_putendl_fd("sa", 1);
 }
 
 void	sb(t_stack *stack_b)
@@ -39,5 +39,5 @@ void	sb(t_stack *stack_b)
 	first->next = second->next;
 	second->next = first;
 	stack_b->top = second;
-	ft_printf("sb\n");
+	ft_putendl_fd("sb", 1);
 }
