@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 17:31:09 by aelaaser          #+#    #+#             */
-/*   Updated: 2024/11/25 04:28:03 by aelaaser         ###   ########.fr       */
+/*   Updated: 2024/11/25 16:07:01 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,6 @@ void	do_move_solo(t_stack *stack, char identity);
 void	do_move_common(t_stack *stack_a, t_stack *stack_b);
 void	set_b_best(t_stack	*stack_a, t_stack *stack_b);
 void	maping_sort(t_stack *stack_a, t_stack *stack_b);
+void	sort_stack(t_stack *stack, t_stack *stack_b);
+void	push_swap(t_stack *stack_a, t_stack *stack_b);
 #endif
