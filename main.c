@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 17:34:26 by aelaaser          #+#    #+#             */
-/*   Updated: 2024/11/25 16:22:59 by aelaaser         ###   ########.fr       */
+/*   Updated: 2024/11/25 19:58:21 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	main(int argc, char **argv)
 		argv = ft_split(argv[1], ' ');
 		argc = ft_array_len(argv);
 		if (parse_input(a, argc, argv, -1) != 1)
-			return (free(argv), free_stack(a), free_stack(b), exit_app(-1));
+			return (ft_free_ar(argv), free_stack(a), free_stack(b), exit_app(-1));
 	}
 	else if (parse_input(a, argc, argv, 0) != 1)
 		return (free_stack(a), free_stack(b), exit_app(-1));
