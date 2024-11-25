@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 17:34:26 by aelaaser          #+#    #+#             */
-/*   Updated: 2024/11/25 04:46:31 by aelaaser         ###   ########.fr       */
+/*   Updated: 2024/11/25 05:21:45 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	main(int argc, char **argv)
 	t_stack	*a;
 	t_stack	*b;
 
-	if (argc < 2)
+	if (argc < 2 || (argc == 2 && argv[1][0] == '\0'))
 		return (ft_putendl_fd("Error", 2), -1);
 	a = init_stack();
 	if (!a)

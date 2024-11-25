@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 20:06:51 by aelaaser          #+#    #+#             */
-/*   Updated: 2024/11/25 00:03:08 by aelaaser         ###   ########.fr       */
+/*   Updated: 2024/11/25 05:21:32 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int	ft_isnum(char *s)
 			return (0);
 		i++;
 	}
+	if ((ft_atoi(s) % 10) != (s[i - 1] - '0'))
+		return (0);
 	return (1);
 }
 
