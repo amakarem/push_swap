@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:47:53 by aelaaser          #+#    #+#             */
-/*   Updated: 2024/11/25 16:05:59 by aelaaser         ###   ########.fr       */
+/*   Updated: 2024/11/25 19:45:23 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	sort_stack(t_stack *stack, t_stack *stack_b)
 {
 	int	min_index;
 
+	sort_asc_by_index(stack, 'A');
 	while (stack->size > 0 && !is_sorted_stack(stack))
 	{
 		sort_asc_by_index(stack, 'A');
@@ -30,12 +31,42 @@ void	sort_stack(t_stack *stack, t_stack *stack_b)
 				break ;
 		}
 		if (!is_sorted_stack(stack))
-			pb(stack, stack_b);
+			ra(stack, 0);
+		sort_asc_by_index(stack, 'A');
 	}
 	while (stack_b->size > 0)
 		pa(stack, stack_b);
 	if (!is_sorted_stack(stack))
 		sort_stack(stack, stack_b);
+}
+
+void	sort_basic(t_stack *stack)
+{
+	sort_asc_by_index(stack, 'A');
+	if (is_sorted_stack(stack))
+		return ;
+	if (stack->top->index > stack->top->next->index)
+	{
+		if (stack->top->index < stack->top->next->next->index)
+			sa(stack);
+		else if (stack->top->next->index > stack->top->next->next->index)
+		{
+			sa(stack);
+			rra(stack, 0);
+		}
+		else
+			ra(stack, 0);
+	}
+	else if (stack->top->index < stack->top->next->index)
+	{
+		if (stack->top->index > stack->top->next->next->index)
+			rra(stack, 0);
+		else if (stack->top->next->index > stack->top->next->next->index)
+		{
+			sa(stack);
+			ra(stack, 0);
+		}
+	}
 }
 
 void	push_swap(t_stack *stack_a, t_stack *stack_b)
@@ -48,5 +79,5 @@ void	push_swap(t_stack *stack_a, t_stack *stack_b)
 	if (stack_a->size > 3)
 		maping_sort(stack_a, stack_b);
 	else
-		sort_stack(stack_a, stack_b);
+		sort_basic(stack_a);
 }
