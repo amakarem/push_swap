@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 17:34:26 by aelaaser          #+#    #+#             */
-/*   Updated: 2024/11/25 02:07:58 by aelaaser         ###   ########.fr       */
+/*   Updated: 2024/11/25 02:32:41 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int	parse_input(t_stack *a, int argc, char **argv, int end)
 		if (!ft_isnum(argv[i]) || ft_already_exist_stack(a, ft_atoi(argv[i])))
 		{
 			ft_printf("Error\n");
-			ft_printf("\n%i", argc);
 			return (-1);
 		}
 		push(a, ft_atoi(argv[i]), -1);
