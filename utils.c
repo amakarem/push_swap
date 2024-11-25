@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:47:53 by aelaaser          #+#    #+#             */
-/*   Updated: 2024/11/25 19:57:07 by aelaaser         ###   ########.fr       */
+/*   Updated: 2024/11/25 20:04:28 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	sort_stack(t_stack *stack, t_stack *stack_b)
 		sort_stack(stack, stack_b);
 }
 
-char	**ft_free_ar(char	**arr)
+char	**freearr(char	**arr)
 {
 	int	i;
 

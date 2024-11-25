@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 17:31:09 by aelaaser          #+#    #+#             */
-/*   Updated: 2024/11/25 19:57:51 by aelaaser         ###   ########.fr       */
+/*   Updated: 2024/11/25 20:04:19 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ t_stack	*init_stack(void);
 int		ft_already_exist_stack(t_stack *stack, int n);
 int		push(t_stack *stack, int value, int index);
 int		pop(t_stack *stack);
-void	free_stack(t_stack *stack);
-char	**ft_free_ar(char	**arr);
+void	freestack(t_stack *stack);
+char	**freearr(char	**arr);
 int		ft_isnum(char *s);
 int		is_sorted_stack(t_stack *stack);
 void	sa(t_stack *stack_a);

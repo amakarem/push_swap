@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 20:40:21 by aelaaser          #+#    #+#             */
-/*   Updated: 2024/11/25 04:54:20 by aelaaser         ###   ########.fr       */
+/*   Updated: 2024/11/25 20:01:20 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	pop(t_stack *stack)
 	return (value);
 }
 
-void	free_stack(t_stack *stack)
+void	freestack(t_stack *stack)
 {
 	while (stack->size > 0)
 		pop(stack);
