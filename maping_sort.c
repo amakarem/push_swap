@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 18:30:55 by aelaaser          #+#    #+#             */
-/*   Updated: 2024/11/25 01:13:05 by aelaaser         ###   ########.fr       */
+/*   Updated: 2024/11/25 01:31:40 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,21 @@ int	find_alternative_move(t_stack *stack_a, t_stack *stack_b)
 	return (1);
 }
 
+static int	get_score(int cost_a, int cost_b, int index, int c_index)
+{
+	int	score;
+
+	if (get_cost(cost_a, cost_b) >= 3)
+		return (2147483647);
+	score = get_cost(cost_a, cost_b) + ft_unsigend(index - c_index);
+	return (score);
+}
+
 int	set_best(t_stack *stack_a, t_stack *stack_b, int b_index, int best_score)
 {
 	t_node	*head_a;
 	int		cost_b;
-	int		score;
+	int		cost_a;
 	int		c_index;
 
 	cost_b = moves_qty(stack_b, b_index);
@@ -54,16 +64,12 @@ int	set_best(t_stack *stack_a, t_stack *stack_b, int b_index, int best_score)
 			c_index = head_a->next->index;
 		if (head_a->index < b_index && b_index < c_index)
 		{
-			if (get_cost(moves_qty(stack_a, head_a->index), cost_b) < 3)
+			cost_a = moves_qty(stack_a, head_a->index);
+			if (get_score(cost_a, cost_b, head_a->index, c_index) < best_score)
 			{
-				score = get_cost(moves_qty(stack_a, head_a->index), cost_b)
-					+ ft_unsigend(head_a->index - c_index);
-				if (score < best_score)
-				{
-					best_score = score;
-					stack_a->best = c_index;
-					stack_b->best = b_index;
-				}
+				best_score = get_score(cost_a, cost_b, head_a->index, c_index);
+				stack_a->best = c_index;
+				stack_b->best = b_index;
 			}
 		}
 		head_a = head_a->next;
