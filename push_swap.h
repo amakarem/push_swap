@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 17:31:09 by aelaaser          #+#    #+#             */
-/*   Updated: 2024/11/25 20:04:19 by aelaaser         ###   ########.fr       */
+/*   Updated: 2024/12/05 23:30:02 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,14 @@
 # include <stdlib.h>
 # include "libft/libft.h"
 
-typedef struct s_node {
+typedef struct s_node
+{
 	int				index;
 	int				value;
 	struct s_node	*next;
 }	t_node;
-typedef struct s_stack {
+typedef struct s_stack
+{
 	t_node	*top;
 	int		size;
 	int		best;
