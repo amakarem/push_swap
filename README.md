@@ -20,21 +20,20 @@ Your program must output the operation sequence (one per line), optimizing for t
 
 ---
 
-## 🚀 Strategy & Algorithm
+### 🚀 Strategy & Algorithm
 
-1. **Simplify values** (optional): map elements to their increasing rank (0…n‑1).  
-2. **Handle small input (≤ 5)** with hardcoded optimal sequences.  
-3. **Main sorting** (for larger \(n\)):
-   - Use **radix sort** (base‑2) or an optimized variant like the **Turk Algorithm** :contentReference[oaicite:3]{index=3}.
-   - Typical steps:
-     - Push chunks (or bits) to **stack B**, using efficient combined rotations (`rr`, `rrr`).
-     - Once B contains a chunk, move them back to A in sorted order.
+1. **Simplify values**: Convert all input integers to an index-based range (`0` to `n - 1`) to reduce value distribution complexity.
+2. **Small cases (≤ 5 elements)**: Handled with hardcoded optimal sorting logic for minimal moves.
+3. **Large input (≥ 6 elements)**:
+   - Built on a combination of the **Turk Algorithm** and **binary radix sort**.
+   - ✨ **Custom Optimized Sorting Layer**:
+     I implemented a custom sorting strategy on top of traditional radix-based approaches to:
+     - Reduce the total number of operations
+     - Minimize redundant stack rotations
+     - Adapt dynamically to varying input patterns and ranges
 
-Your goal is to sort:
-- ≤ 3 numbers in ≤ 3 moves
-- ≤ 5 numbers in ≤ 12 moves
-- 100 numbers in ≤ 700 moves (maximum score)
-- 500 numbers in ≤ 5500 moves :contentReference[oaicite:4]{index=4}
+This hybrid model produces efficient, constraint-respecting sequences even for larger stacks (100–500 elements), maintaining low operation counts and fast execution.
+
 
 ---
 
